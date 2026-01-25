@@ -58,21 +58,12 @@ namespace ComingLights
             LeftModel = leftModel;
             RightModel = rightModel;
             ThisNavmeshGenerator.gameObject.SetActive(false);
-            Debug.Log("THIS IS NOT WORKING");
             int SelectedMeshesCount = SelectedMeshes.Count;
-            for(int i = 0; i < SelectedMeshesCount; i++)
-            {
-                Debug.Log("Selected Meshes 1 [" + i + "] -> " + SelectedMeshes[i]);
-            }
         }
 
         private void Update()
         {
             int SelectedMeshesCount = SelectedMeshes.Count;
-            for(int i = 0; i < SelectedMeshesCount; i++)
-            {
-                Debug.Log("Selected Meshes 1 [" + i + "] -> " + SelectedMeshes[i]);
-            }
             if(Input.GetKeyDown(KeyCode.M))
             {
                 if(mouseMode == MouseMode.Select)
@@ -125,26 +116,18 @@ namespace ComingLights
                         else
                         {
                             SelectNode(resultingNode, raycastHitGameObject);
-                            Debug.Log("CURRENT SELECTED NODE: " + resultingNode.Node);
                         }
                     }
-                    Debug.Log("wtf?");
-                    /*for(int i = 0; i < SelectedMeshes.Length; i++)
-                    {
-                        Debug.Log("Selected Meshes 1 [" + i + "] -> " + SelectedMeshes[i]);
-                    }
+                    /*
                     resultingMesh = gameObjectToMeshPointers.GetValueOrDefault(raycastHitGameObject, -1);
                     if(resultingMesh != -1)
                     {
-                        Debug.Log("Selecting Mesh 1 -> " + resultingMesh);
                         if(SelectedMeshes.Contains(resultingMesh) == true)
                         {
-                            Debug.Log("Selecting Mesh 2 -> " + resultingMesh);
                             //UnselectMesh(resultingMesh, raycastHitGameObject);
                         }
                         else
                         {
-                            Debug.Log("Selecting Mesh 3");
                             //SelectMesh(resultingMesh, raycastHitGameObject);
                             Debug.Log("CURRENT SELECTED MESH: " + Navmesh.NavmeshMeshes[Navmesh.Active][resultingMesh].Mesh);
                         }
@@ -156,27 +139,17 @@ namespace ComingLights
                 }
             }
 
-            /*if(navmeshMeshes.Count > 0)
-            {
-                Debug.Log("Dot Product between navmeshMeshes and point, node 1 -> " + Vector3.Dot(navmeshMeshes[0][0].normalized, (raycastHit.point - navmeshMeshes[0][0]).normalized));
-                Debug.Log("Dot Product between navmeshMeshes and point, node 2 -> " + Vector3.Dot(navmeshMeshes[0][1].normalized, (raycastHit.point - navmeshMeshes[0][1]).normalized));
-                Debug.Log("Dot Product between navmeshMeshes and point, node 3 -> " + Vector3.Dot(navmeshMeshes[0][2].normalized, (raycastHit.point - navmeshMeshes[0][2]).normalized));
-            }*/
-
             if(Input.GetKeyDown(KeyCode.H))
             {
                 bool isPointInPoly = false;
                 //!cameraToMouseRay = CLCamera.MainCamera.ScreenPointToRay(Input.mousePosition);
                 Physics.Raycast(cameraToMouseRay, out raycastHit, 100);
                 //isPointInPoly = (MeshUtil.FindMeshContainingPoint(navmeshMeshes[Navmesh.Active], raycastHit.point) != null) ? true : false;
-                Debug.Log("Is Point in Poly: " + isPointInPoly);
             }
 
             // Link selected nodes
             if(Input.GetKeyDown(KeyCode.L))
             {
-                Debug.Log("Linking selected nodes...");
-                Debug.Log("selectedNodesCount -> " + selectedNodesCount);
                 if(selectedNodesCount > 2)
                 {
                     int[] meshNodes = new int[selectedNodesCount];
@@ -189,11 +162,6 @@ namespace ComingLights
                     {
                         mesh[i] = Navmesh.Nodes[Navmesh.Active][meshNodes[i]];
                     }
-                    Debug.Log("IS THIS MESH CLOCKWISE? -> " + MeshUtil.IsMeshClockwise(mesh));
-                    Debug.Log("IS THIS MESH CONVEX? -> " + MeshUtil.IsMeshConvex(mesh));
-                    Debug.Log("TRI AREA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -> " + Vector3Util.TriArea2(Navmesh.Nodes[Navmesh.Active][meshNodes[0]],
-                                                                                       Navmesh.Nodes[Navmesh.Active][meshNodes[1]],
-                                                                                       Navmesh.Nodes[Navmesh.Active][meshNodes[2]]));
                     if(MeshUtil.IsMeshConvex(mesh) == true && MeshUtil.IsMeshClockwise(mesh) == true)
                     {
                         NewMesh(meshNodes);
@@ -206,9 +174,6 @@ namespace ComingLights
                     {
                         triangleNodes[i] = selectedNodes[i].Node;
                     }
-                    Debug.Log("TRI AREA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -> " + Funnel.TriArea2(Navmesh.Nodes[Navmesh.Active][triangleNodes[0]],
-                                                                                       Navmesh.Nodes[Navmesh.Active][triangleNodes[1]],
-                                                                                       Navmesh.Nodes[Navmesh.Active][triangleNodes[2]]));
                     NewMesh(triangleNodes);
                 }*/
             }
@@ -268,7 +233,6 @@ namespace ComingLights
             }
             Navmesh.EdgesNodes[Navmesh.Active][newEdge][0] = leftNode;
             Navmesh.EdgesNodes[Navmesh.Active][newEdge][1] = rightNode;
-            Debug.Log("Last Edge -> " + newEdge);
             return newEdge;
         }
 
@@ -310,7 +274,6 @@ namespace ComingLights
                 {
                     nodeGameObject = Instantiate<GameObject>(ThisNavmeshGenerator.nodeModel);
                 }
-                Debug.Log("nodePointer -> " + nodeGameObject);
                 nodeGameObject.GetComponent<Renderer>().material.color = unselectedNodeColor;
                 nodeGameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                 nodeGameObject.transform.position = position;
@@ -412,7 +375,6 @@ namespace ComingLights
                             }
                         }
                     }
-                    Debug.Log("canTheEdgeBeCompletelyDeleted -> " + canTheEdgeBeCompletelyDeleted);
                     // The edge must be deleted completely if it's not connected to any mesh other than the affected ones
                     if(canTheEdgeBeCompletelyDeleted == 2)
                     {
@@ -571,7 +533,6 @@ namespace ComingLights
                         }
                         else
                         {
-                            Debug.Log("It's happening baby! 2");
                             edges[i] = edgeFromNodes;
                         }
                         for(int j = 0; j < 2; j++)
@@ -701,7 +662,6 @@ namespace ComingLights
                             }
                             /*else if(j == maxNumberOfNodesPerMesh-1)
                             {
-                                Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYYYYYYYYYYY: " + i);
                                 int[] thisNavmeshMesh = new int[maxNumberOfNodesPerMesh];
                                 for(int k = 0; k < maxNumberOfNodesPerMesh; k++)
                                 {
@@ -740,7 +700,6 @@ namespace ComingLights
                         AddNodeToMesh(node, i, 0);
                         AddNodeToMesh(nodeToLink, i, 1);
                         AddNodeToMesh(-1, i, 2);
-                        Debug.Log("CALLED i -> " + i);
                         break;
                     }
                 }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PabloJMartinez.AStar.Geometry")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cf85d812340ed5692650fc6301dfa0ee722b6aac")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+302cb1a154b8c5914346e18374929e2c25ddf72c")]
 [assembly: System.Reflection.AssemblyProductAttribute("PabloJMartinez.AStar.Geometry")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PabloJMartinez.AStar.Geometry")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
