@@ -1,0 +1,28 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Collections/">
+    <Project Path="src/Collections/PabloJMartinez.AStar.Collections.csproj" />
+  </Folder>
+  <Folder Name="/src/Core/">
+    <Project Path="src/Core/PabloJMartinez.AStar.Core.csproj" />
+  </Folder>
+  <Folder Name="/src/Geometry/">
+    <Project Path="src/Geometry/PabloJMartinez.AStar.Geometry.csproj" />
+  </Folder>
+  <Folder Name="/src/Unity/">
+    <Project Path="src/Unity/PabloJMartinez.AStar.Unity.csproj" />
+  </Folder>
+  <Folder Name="/tests/" />
+  <Folder Name="/tests/Collections.Tests/">
+    <Project Path="tests/Collections.Tests/PabloJMartinez.AStar.Collections.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tests/Core.Tests/">
+    <Project Path="tests/Core.Tests/PabloJMartinez.AStar.Core.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tests/Geometry.Tests/">
+    <Project Path="tests/Geometry.Tests/PabloJMartinez.AStar.Geometry.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tests/Unity.Tests/">
+    <Project Path="tests/Unity.Tests/PabloJMartinez.AStar.Unity.Tests.csproj" />
+  </Folder>
+</Solution>
